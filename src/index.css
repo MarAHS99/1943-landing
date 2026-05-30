@@ -1,0 +1,25 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #CC1A1A;
+  --dark: #080808;
+  --gray: #111111;
+  --light: #f0ede8;
+  --muted: #555;
+  --ff-display: 'Bebas Neue', sans-serif;
+  --ff-body: 'Barlow', sans-serif;
+  --ff-mono: 'Share Tech Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--dark);
+  color: var(--light);
+  font-family: var(--ff-body);
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }

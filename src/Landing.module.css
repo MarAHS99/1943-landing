@@ -1,0 +1,529 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+.wrap {
+  min-height: 100vh;
+  background: #080808;
+  color: #f0ede8;
+  font-family: 'Barlow', sans-serif;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.heroVideoWrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.heroVideo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 177.78vh;
+  height: 100vh;
+  min-width: 100%;
+  min-height: 56.25vw;
+  transform: translate(-50%, -50%);
+  border: none;
+  pointer-events: none;
+}
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(8,8,8,0.3) 0%,
+    rgba(8,8,8,0.5) 60%,
+    rgba(8,8,8,0.95) 100%
+  );
+}
+.heroOverlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
+}
+.heroContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+  padding: 2rem;
+}
+.heroLogo {
+  width: clamp(180px, 36vw, 300px);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 40px rgba(204,26,26,0.4));
+  animation: fadeUp 0.8s ease both;
+}
+.heroCtas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+.ctaPrimary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #1DB954;
+  color: #000;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.ctaPrimary:hover { opacity: 0.85; }
+.ctaSecondary {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: 1px solid rgba(240,237,232,0.4);
+  color: #f0ede8;
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.ctaSecondary:hover { border-color: #CC1A1A; color: #CC1A1A; }
+.heroScroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: 18px;
+  color: rgba(240,237,232,0.3);
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ── MANIFIESTO — fanzine brutal ── */
+.manifiesto {
+  background: #CC1A1A;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+.manifiestoInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 340px;
+}
+.manifiestoLeft {
+  padding: 3rem 2.5rem;
+  border-right: 3px solid #080808;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.manifiestoRight {
+  padding: 3rem 2.5rem;
+  background: #080808;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.manifiestoQuote {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(28px, 5vw, 52px);
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  color: #080808;
+  margin: 0;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.manifiestoBody {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #555;
+  margin: 0 0 1.25rem;
+}
+.manifiestoFirma {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #CC1A1A;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* ── MÚSICA — fondo negro, tipografía enorme ── */
+.musicaWrap {
+  background: #080808;
+  border-top: 3px solid #CC1A1A;
+  padding: 0;
+  overflow: hidden;
+}
+.musicaHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 2rem 2.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding-bottom: 1.25rem;
+}
+.musicaTitulo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 12vw, 110px);
+  line-height: 0.9;
+  color: #f0ede8;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+.musicaSub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: #333;
+  text-transform: uppercase;
+  white-space: normal;
+  line-height: 1.6;
+}
+.musicaEmbed {
+  padding: 1.5rem 2.5rem;
+}
+.discografia {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.discoItem {
+  font-size: 11px;
+  font-family: 'Share Tech Mono', monospace;
+  color: #333;
+  letter-spacing: 0.06em;
+  padding: 0.85rem 1rem;
+  border-right: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: color 0.15s, background 0.15s;
+  cursor: default;
+}
+.discoItem:hover { color: #f0ede8; background: rgba(204,26,26,0.08); }
+.discoItem:nth-child(4n) { border-right: none; }
+
+/* ── SHOWS — estilo ticket de papel ── */
+.showsWrap {
+  background: #080808;
+  border-top: 3px solid #CC1A1A;
+  padding: 0;
+  overflow: hidden;
+}
+.showsHeader {
+  background: #080808;
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.showsTitulo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 12vw, 110px);
+  line-height: 0.9;
+  color: #f0ede8;
+  font-weight: 400;
+  margin: 0;
+}
+.showsTituloRed { color: #CC1A1A; }
+.showsList { padding: 0; }
+.showItem {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: #0d0d0d;
+  transition: background 0.15s;
+  cursor: default;
+}
+.showItem:hover { background: #111; }
+.showItem.next {
+  background: #CC1A1A;
+  border-bottom-color: #aa1515;
+}
+.showItem.next:hover { background: #bb1515; }
+.showItem.next .showVenue,
+.showItem.next .showCity { color: #f0ede8; }
+.showItem.next .showMonth { color: rgba(240,237,232,0.5); }
+.showItem.next .showDay { color: #f0ede8; }
+.showItem.next .showTag { background: #080808; color: #f0ede8; border-color: transparent; }
+
+.showDateBlock {
+  padding: 1.25rem 1.5rem;
+  border-right: 1px solid rgba(255,255,255,0.06);
+  text-align: center;
+  font-family: 'Bebas Neue', sans-serif;
+  line-height: 1;
+}
+.showItem.next .showDateBlock { border-right-color: rgba(0,0,0,0.15); }
+.showDay   { font-size: 42px; color: #CC1A1A; }
+.showMonth { font-size: 10px; letter-spacing: 0.25em; color: #444; margin-top: 2px; }
+.showInfo  { padding: 1.25rem 1.5rem; }
+.showVenue { font-size: 15px; font-weight: 700; color: #f0ede8; letter-spacing: 0.02em; }
+.showCity  { font-size: 11px; color: #444; margin-top: 4px; font-family: 'Share Tech Mono', monospace; letter-spacing: 0.08em; }
+.showActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 1.5rem;
+}
+.showEntradas {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 1px;
+  white-space: nowrap;
+  font-family: 'Share Tech Mono', monospace;
+  background: #CC1A1A;
+  color: #f0ede8;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.showEntradas:hover { opacity: 0.8; }
+.showItem.next .showEntradas { background: #080808; color: #f0ede8; }
+.showEntradasMobile {
+  display: none;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #CC1A1A;
+  text-decoration: none;
+  font-family: 'Share Tech Mono', monospace;
+  margin-top: 6px;
+}
+.showItem.next .showEntradasMobile { color: #f0ede8; }
+.showTag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 1px;
+  white-space: nowrap;
+  font-family: 'Share Tech Mono', monospace;
+  background: rgba(204,26,26,0.1);
+  color: #CC1A1A;
+  border: 1px solid rgba(204,26,26,0.2);
+}
+
+/* ── MERCH ── */
+.merchWrap {
+  background: #080808;
+  border-top: 3px solid #CC1A1A;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 200px;
+}
+.merchLeft {
+  padding: 3rem 2.5rem;
+  border-right: 3px solid #CC1A1A;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.merchTitulo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 10vw, 96px);
+  line-height: 0.9;
+  color: #f0ede8;
+  font-weight: 400;
+  margin: 0 0 0.5rem;
+}
+.merchText {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.7;
+  margin: 0;
+}
+.merchRight {
+  padding: 3rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.merchBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #000;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.1em;
+  padding: 16px 32px;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.merchBtn:hover { opacity: 0.85; }
+
+/* ── FOOTER ── */
+.footer {
+  background: #080808;
+  border-top: 3px solid #080808;
+  overflow: hidden;
+  position: relative;
+}
+.footerTop {
+  background: #CC1A1A;
+  padding: 2.5rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 3rem;
+}
+.footerFrase {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(22px, 4vw, 48px);
+  line-height: 0.95;
+  color: #080808;
+  font-weight: 400;
+  margin: 0;
+  text-transform: uppercase;
+}
+.footerBanda {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: center;
+  text-align: center;
+}
+.footerBandaTitle {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(8,8,8,0.5);
+}
+.footerIntegrantes {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.footerIntegrantes span {
+  font-size: 11px;
+  color: rgba(8,8,8,0.75);
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.footerIntegrantes em {
+  font-style: normal;
+  color: #080808;
+  font-weight: 700;
+}
+.footerLogo {
+  width: clamp(70px, 10vw, 110px);
+  border-radius: 50%;
+  justify-self: end;
+  opacity: 0.9;
+  transition: opacity 0.3s, filter 0.3s;
+}
+.footerLogo:hover { opacity: 1; filter: drop-shadow(0 0 10px rgba(0,0,0,0.4)); }
+
+.footerBottom {
+  padding: 1.25rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footerLinks {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.footerSocial {
+  color: #2a2a2a;
+  transition: color 0.15s;
+  display: flex;
+}
+.footerSocial:hover { color: #CC1A1A; }
+.footerCopy {
+  font-size: 10px;
+  color: #222;
+  letter-spacing: 0.14em;
+  font-family: 'Share Tech Mono', monospace;
+  margin: 0;
+}
+
+/* ── UTILS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
+  /* Manifiesto */
+  .manifiestoInner { grid-template-columns: 1fr; }
+  .manifiestoLeft  { border-right: none; border-bottom: 3px solid #080808; padding: 2rem 1.5rem; }
+  .manifiestoRight { padding: 2rem 1.5rem; }
+
+  /* Música */
+  .musicaHeader { padding: 1.5rem 1.5rem 1rem; }
+  .musicaEmbed  { padding: 1rem 1.5rem; }
+  .discografia  { grid-template-columns: repeat(2, 1fr); }
+
+  /* Shows */
+  .showsHeader { padding: 1rem 1.5rem; }
+  .showItem { grid-template-columns: 72px 1fr; }
+  .showActions { display: none; }
+  .showEntradasMobile { display: inline-block; }
+  .showDateBlock { padding: 1rem; }
+  .showInfo { padding: 1rem; }
+
+  /* Merch */
+  .merchWrap  { grid-template-columns: 1fr; }
+  .merchLeft  { border-right: none; border-bottom: 3px solid #CC1A1A; padding: 2rem 1.5rem; }
+  .merchRight { padding: 1.5rem 1.5rem 2rem; justify-content: flex-start; }
+
+  /* Hero */
+  .heroCtas { flex-direction: column; width: 100%; max-width: 280px; }
+  .ctaPrimary, .ctaSecondary { justify-content: center; }
+
+  /* Footer */
+  .footerTop {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+  }
+  .footerLogo { justify-self: start; width: 80px; }
+  .footerBanda { align-items: flex-start; text-align: left; }
+  .footerBottom { padding: 1rem 1.5rem; flex-direction: column; gap: 0.75rem; align-items: flex-start; }
+}

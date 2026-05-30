@@ -1,0 +1,167 @@
+.stage {
+  position: fixed;
+  inset: 0;
+  background: #04040a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 0.7s ease;
+  overflow: hidden;
+}
+.hide { opacity: 0; pointer-events: none; }
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg, transparent, transparent 3px,
+    rgba(0,0,0,0.09) 3px, rgba(0,0,0,0.09) 4px
+  );
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Pantalla CRT */
+.crt {
+  position: relative;
+  border: 3px solid rgba(204,26,26,0.35);
+  border-radius: 6px;
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.9),
+    0 0 50px rgba(204,26,26,0.15),
+    0 0 100px rgba(0,0,0,0.9),
+    inset 0 0 40px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.canvas {
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* ── INSERT COIN SCREEN ── */
+.insertScreen {
+  width: 320px;
+  height: 480px;
+  background: #04040a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Stars background para insert screen */
+.insertScreen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 25%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 60%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(2px 2px at 80% 75%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 40%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 90%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(2px 2px at 90% 10%, rgba(255,255,255,0.3) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.insertLogo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 96px;
+  line-height: 1;
+  color: #CC1A1A;
+  letter-spacing: 0.06em;
+  text-shadow:
+    3px 3px 0 rgba(0,0,0,0.8),
+    0 0 30px rgba(204,26,26,0.5),
+    0 0 60px rgba(204,26,26,0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.insertSub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: rgba(240,237,232,0.5);
+  text-transform: uppercase;
+  margin-top: -8px;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.insertDivider {
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(204,26,26,0.5), transparent);
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.insertCoin {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  color: #ffcc00;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+.visible { opacity: 1; }
+.invisible { opacity: 0; }
+
+.insertBtn {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.22em;
+  color: #080808;
+  background: #CC1A1A;
+  border: none;
+  padding: 12px 32px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: background 0.15s, transform 0.1s;
+  border-radius: 2px;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.5);
+}
+.insertBtn:hover { background: #e02020; transform: translate(-1px, -1px); box-shadow: 4px 4px 0 rgba(0,0,0,0.5); }
+.insertBtn:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 rgba(0,0,0,0.5); }
+
+.insertCopy {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.15);
+  margin-top: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Skip */
+.skip {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.2);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  padding: 6px 14px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s;
+}
+.skip:hover { color: #fff; border-color: rgba(255,255,255,0.35); }
