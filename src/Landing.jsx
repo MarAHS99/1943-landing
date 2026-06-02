@@ -1,10 +1,11 @@
+import { useState } from 'react'
 import styles from './Landing.module.css'
 
 const SOCIALS = [
   { label: 'Spotify',   url: 'https://open.spotify.com/intl-es/artist/6YJv8uvliYQrpqgvnCK6U7', icon: SpotifyIcon },
   { label: 'Instagram', url: 'https://www.instagram.com/1943ezpeletarecords/',               icon: IGIcon },
   { label: 'Facebook',  url: 'https://www.facebook.com/1943ezpeletarecords',                 icon: FBIcon },
-  { label: 'YouTube',   url: 'https://www.youtube.com/@1943EzpeletaRecords',                        icon: YouTubeIcon },
+  { label: 'YouTube',   url: 'https://www.youtube.com/@1943EzpeletaRecords',                 icon: YouTubeIcon },
 ]
 
 const SHOWS = [
@@ -24,11 +25,39 @@ const DISCOS = [
   '2023 — Sin mirar atrás',
 ]
 
+const GALLERY = [
+  { src: '/imagen1.jpg', alt: '1943 en escenario' },
+  { src: '/imagen2.jpg', alt: 'Diego Pele' },
+  { src: '/imagen3.jpg', alt: '1943 con banderas' },
+  { src: '/imagen4.jpg', alt: '1943 con el público' },
+  { src: '/imagen5.jpg', alt: '1943 en estudio' },
+  { src: '/imagen6.jpg', alt: '1943 en el Groove' },
+  { src: '/imagen7.jpg', alt: 'Merch Ezpeleta Records' },
+  { src: '/imagen8.jpg', alt: 'Backstage sonido' },
+  { src: '/imagen9.jpg', alt: 'Pele en escenario' },
+  { src: '/imagen10.jpg', alt: '1943 con banderas B&W' },
+]
+
 const MERCH_WA = 'https://wa.me/message/DAHWDP23TXKBG1'
 
 export default function Landing() {
+  const [lightbox, setLightbox] = useState(null)
+
   return (
     <div className={styles.wrap}>
+
+      {/* ── LIGHTBOX ── */}
+      {lightbox !== null && (
+        <div className={styles.lightboxOverlay} onClick={() => setLightbox(null)}>
+          <button className={styles.lightboxClose} onClick={() => setLightbox(null)}>✕</button>
+          <img
+            src={GALLERY[lightbox].src}
+            alt={GALLERY[lightbox].alt}
+            className={styles.lightboxImg}
+            onClick={e => e.stopPropagation()}
+          />
+        </div>
+      )}
 
       {/* ── HERO ── */}
       <section className={styles.hero}>
@@ -70,6 +99,10 @@ export default function Landing() {
               Los temas, los shows, el sonido: todo armado entre todos los integrantes.
               Orgullosos de llegar a más de 30 años manteniendo nuestra ideología e identidad.
             </p>
+            <div className={styles.manifiestoArcade}>
+              <img src="/arcade.jpg" alt="El juego 1943 — origen del nombre" style={{transform: 'none'}} />
+              <span>El juego que les dio el nombre</span>
+            </div>
           </div>
         </div>
       </section>
@@ -132,6 +165,38 @@ export default function Landing() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* ── GALERÍA ── */}
+      <section className={styles.alt}>
+        <div className={styles.altInner}>
+          <h2 className={styles.sectionLabel}>La <span>Banda</span></h2>
+          <div className={styles.gallery}>
+            {GALLERY.map((img, i) => (
+              <div key={i} className={`${styles.gCell} ${i === 0 ? styles.gBig : ''}`}
+                onClick={() => setLightbox(i)} style={{cursor:'pointer'}}>
+                <img src={img.src} alt={img.alt} onError={e => { e.target.style.display='none' }} />
+                <div className={styles.gOverlay} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CONTACTO ── */}
+      <section className={styles.section}>
+        <h2 className={styles.sectionLabel}>Con<span>tacto</span></h2>
+        <p className={styles.contactSub}>Para shows, prensa o booking — escribinos directo.</p>
+        <form
+          action="https://formspree.io/f/milnueve.ezpeletarecords@gmail.com"
+          method="POST"
+          className={styles.form}
+        >
+          <input className={styles.field} type="text" name="nombre" placeholder="Nombre" required />
+          <input className={styles.field} type="email" name="email" placeholder="Email" required />
+          <textarea className={styles.field} name="mensaje" rows="3" placeholder="Mensaje (shows, prensa, booking...)" required />
+          <button className={styles.submitBtn} type="submit">Enviar</button>
+        </form>
       </section>
 
       {/* ── MERCH ── */}
