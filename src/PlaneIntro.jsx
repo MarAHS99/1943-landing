@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import styles from './PlaneIntro.module.css'
 
+const logoIntro = '/logointro.png'
 const sleep = ms => new Promise(r => setTimeout(r, ms))
 const W = 320
 const H = 480
@@ -440,10 +441,25 @@ export default function PlaneIntro({ onComplete }) {
         s.yearAlpha = Math.min(s.yearAlpha + 0.025, 1)
         ctx.save()
         ctx.globalAlpha = s.yearAlpha
-        ctx.fillStyle = '#f0ede8'
-        ctx.font = `bold ${Math.floor(W * 0.28)}px 'Bebas Neue', sans-serif`
-        ctx.textAlign = 'center'
-        ctx.fillText('1943', W/2, H/2 + 40)
+        if (!window.introLogo) {
+          window.introLogo = new Image()
+          window.introLogo.src = '/logointro.png'
+        }
+
+        const img = window.introLogo
+
+        if (img.complete) {
+          const width = 240
+          const height = (img.height / img.width) * width
+
+          ctx.drawImage(
+            img,
+            (W - width) / 2,
+            (H - height) / 2,
+            width,
+            height
+          )
+        }
         ctx.restore()
         if (s.yearAlpha >= 1 && !s.done) {
           s.done = true
@@ -460,10 +476,25 @@ export default function PlaneIntro({ onComplete }) {
         ctx.fillRect(0, 0, W, H)
         ctx.save()
         ctx.globalAlpha = 1
-        ctx.fillStyle = '#f0ede8'
-        ctx.font = `bold ${Math.floor(W * 0.28)}px 'Bebas Neue', sans-serif`
-        ctx.textAlign = 'center'
-        ctx.fillText('1943', W/2, H/2 + 40)
+        if (!window.introLogo) {
+          window.introLogo = new Image()
+          window.introLogo.src = '/logointro.png'
+        }
+
+        const img = window.introLogo
+
+        if (img.complete) {
+          const width = 240
+          const height = (img.height / img.width) * width
+
+          ctx.drawImage(
+            img,
+            (W - width) / 2,
+            (H - height) / 2,
+            width,
+            height
+          )
+        }
         ctx.restore()
       }
 
@@ -494,7 +525,11 @@ export default function PlaneIntro({ onComplete }) {
       <div className={`${styles.stage} ${hide ? styles.hide : ''}`}>
         <div className={styles.crt}>
           <div className={styles.insertScreen}>
-            <div className={styles.insertLogo}>1943</div>
+            <img
+              src={logoIntro}
+              alt="1943"
+              className={styles.insertLogo}
+            />
             <div className={styles.insertSub}>EZPELETA RECORDS</div>
             <div className={styles.insertDivider} />
             <div className={`${styles.insertCoin} ${blink ? styles.visible : styles.invisible}`}>

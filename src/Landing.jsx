@@ -106,7 +106,7 @@ export default function Landing() {
             </p>
             <div className={styles.manifiestoArcade}>
               <img src="/arcade.jpg" alt="El juego 1943 — origen del nombre" style={{transform: 'none', cursor: 'pointer'}} onClick={() => setArcadeOpen(true)} />
-              <span>El juego que les dio el nombre</span>
+              <span>El juego que nos dio el nombre</span>
             </div>
           </div>
         </div>
@@ -116,7 +116,7 @@ export default function Landing() {
       <section className={styles.musicaWrap}>
         <div className={styles.musicaHeader}>
           <h2 className={styles.musicaTitulo}>La Música</h2>
-          <span className={styles.musicaSub}>8 discos · 30 años · independiente</span>
+          <span className={styles.musicaSub}>8 discos · 32 años · independiente</span>
         </div>
         <div className={styles.musicaEmbed}>
           <iframe
@@ -191,7 +191,7 @@ export default function Landing() {
       {/* ── CONTACTO ── */}
       <section className={styles.section}>
         <h2 className={styles.sectionLabel}>Con<span>tacto</span></h2>
-        <p className={styles.contactSub}>Para shows, prensa o booking — escribinos directo.</p>
+        <p className={styles.contactSub}>Para shows, prensa o booking — Completa el formulario.</p>
         <form
           action="https://formspree.io/f/milnueve.ezpeletarecords@gmail.com"
           method="POST"
