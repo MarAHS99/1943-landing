@@ -43,19 +43,24 @@ const MERCH_WA = 'https://wa.me/message/DAHWDP23TXKBG1'
 export default function Landing() {
   const [lightbox, setLightbox] = useState(null)
 
+  const [arcadeOpen, setArcadeOpen] = useState(false)
+
   return (
     <div className={styles.wrap}>
 
-      {/* ── LIGHTBOX ── */}
+      {/* ── LIGHTBOX GALERÍA ── */}
       {lightbox !== null && (
         <div className={styles.lightboxOverlay} onClick={() => setLightbox(null)}>
           <button className={styles.lightboxClose} onClick={() => setLightbox(null)}>✕</button>
-          <img
-            src={GALLERY[lightbox].src}
-            alt={GALLERY[lightbox].alt}
-            className={styles.lightboxImg}
-            onClick={e => e.stopPropagation()}
-          />
+          <img src={GALLERY[lightbox].src} alt={GALLERY[lightbox].alt} className={styles.lightboxImg} onClick={e => e.stopPropagation()} />
+        </div>
+      )}
+
+      {/* ── LIGHTBOX ARCADE ── */}
+      {arcadeOpen && (
+        <div className={styles.lightboxOverlay} onClick={() => setArcadeOpen(false)}>
+          <button className={styles.lightboxClose} onClick={() => setArcadeOpen(false)}>✕</button>
+          <img src="/arcade.jpg" alt="El juego 1943" className={styles.lightboxImg} onClick={e => e.stopPropagation()} />
         </div>
       )}
 
@@ -100,7 +105,7 @@ export default function Landing() {
               Orgullosos de llegar a más de 30 años manteniendo nuestra ideología e identidad.
             </p>
             <div className={styles.manifiestoArcade}>
-              <img src="/arcade.jpg" alt="El juego 1943 — origen del nombre" style={{transform: 'none'}} />
+              <img src="/arcade.jpg" alt="El juego 1943 — origen del nombre" style={{transform: 'none', cursor: 'pointer'}} onClick={() => setArcadeOpen(true)} />
               <span>El juego que les dio el nombre</span>
             </div>
           </div>
